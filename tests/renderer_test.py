@@ -54,3 +54,16 @@ def test_working_code_2(r):
     expected += '</head>\n</html>\n'
     actual = r.render(working_code_2)
     assert actual == expected
+
+
+def test_multiple_tags(r):
+    code = '<?pythonprint(1)?>|<?pythonprint(2)?>|<?pythonprint(3)?>'
+    expected = '1|2|3'
+    actual = r.render(code)
+    assert actual == expected
+
+
+def test_with_globals(r):
+    g = dict(hello='test')
+    code = '<?pythonprint(hello)?>'
+    assert r.render(code, **g) == g['hello']

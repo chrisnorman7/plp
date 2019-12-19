@@ -39,7 +39,7 @@ class Renderer:
             c = compile(code, self.filename, 'exec')
             f = StringIO()
             with redirect_stdout(f):
-                eval(c, **kwargs)
+                eval(c, kwargs)
             f.seek(0)
             s += f.read()[:-1]
             string = string[code_end_pos + len(self.end):]
